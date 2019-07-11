@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ichat_pfe/screens/authPage.dart';
 import 'package:ichat_pfe/screens/homePage.dart';
-
+import 'package:flutter/services.dart';
 
 void main(List<String> args) {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    // systemNavigationBarColor: Colors.transparent
+    // systemNavigationBarDividerColor: Colors.transparent
+  ));
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Router(),
-    theme: ThemeData(accentColor: Colors.blueAccent),
+    theme: ThemeData(
+        accentColor: Color(0xff1CD8D2),
+        canvasColor: Color(0xff1CD8D2),
+        backgroundColor: Color(0xff1CD8D2),
+        ),
   ));
 }
-
 
 class Router extends StatelessWidget {
   @override
@@ -19,14 +27,11 @@ class Router extends StatelessWidget {
     return StreamBuilder<FirebaseUser>(
       stream: FirebaseAuth.instance.onAuthStateChanged,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if(snapshot.hasData)
+        if (snapshot.hasData)
           return HomePage();
         else
-          return AuthPage();  
+          return AuthPage();
       },
-      
     );
   }
 }
-
-

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ichat_pfe/tabs/contacts.dart';
+import 'package:ichat_pfe/tabs/msgpage.dart';
+import 'package:ichat_pfe/tabs/profile.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -10,10 +13,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  String id;
 
   @override
   void initState() {
     _tabController = new TabController(vsync: this, length: 3, initialIndex: 0);
+    FirebaseUtils().myId().then((uid) {
+      setState(() {
+        id = uid;
+      });
+    });
+
     super.initState();
   }
 
@@ -26,11 +36,16 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff1CD8D2),
       appBar: AppBar(
         backgroundColor: Color(0xff1CD8D2),
-        elevation: 2,
+        elevation: 0,
         title: Text("iChat"),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(LineIcons.search),
+            onPressed: (){},
+          ),
           PopupMenuButton(
             onSelected: (value) {
               //TODO: add actions
@@ -44,7 +59,10 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text("About"),
-                        Icon(Icons.help_outline,color: Colors.orange,)
+                        Icon(
+                          Icons.help_outline,
+                          color: Colors.orange,
+                        )
                       ],
                     ),
                     value: 1,
@@ -54,7 +72,10 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text("Github"),
-                        Icon(LineIcons.github,color: Colors.green,)
+                        Icon(
+                          LineIcons.github,
+                          color: Colors.green,
+                        )
                       ],
                     ),
                     value: 2,
@@ -64,7 +85,10 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text("Logout"),
-                        Icon(Icons.exit_to_app,color: Colors.redAccent,)
+                        Icon(
+                          Icons.exit_to_app,
+                          color: Colors.redAccent,
+                        )
                       ],
                     ),
                     value: 3,
@@ -73,7 +97,8 @@ class _HomePageState extends State<HomePage>
           )
         ],
         bottom: TabBar(
-          indicatorColor: Colors.white,
+          indicatorColor: Colors.white.withOpacity(.8),
+          indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
           tabs: <Widget>[
             Tab(
@@ -94,11 +119,12 @@ class _HomePageState extends State<HomePage>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Container(),
-          Container(),
-          Container(),
+          MsgPage(id: id),
+          Contacts(id: id),
+          Profile(id: id),
         ],
       ),
     );
   }
 }
+

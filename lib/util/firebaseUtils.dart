@@ -5,11 +5,18 @@ class FirebaseUtils {
   final firebaseAuth = FirebaseAuth.instance;
   static final base = FirebaseDatabase.instance.reference();
   final base_user = base.child("users");
+  final base_chat=base.child("chats");
 
   Future<FirebaseUser> signIn(String mail, String password) async {
     final FirebaseUser user = await firebaseAuth.signInWithEmailAndPassword(
         email: mail, password: password);
     return user;
+  }
+
+  
+  Future<String> myId() async {
+    FirebaseUser user = await firebaseAuth.currentUser();
+    return user.uid;
   }
 
   Future<bool> logOut() async {
@@ -27,13 +34,16 @@ class FirebaseUtils {
       return true;
   }
 
-  Future<FirebaseUser> signup(String mail, String password, String name) async {
+  Future<FirebaseUser> signup(String email, String password, String name) async {
     final FirebaseUser user = await firebaseAuth.createUserWithEmailAndPassword(
-        email: mail, password: password);
+        email: email, password: password);
     String uid = user.uid;
     Map<String, String> map = {
       "uid": uid,
       "name": name,
+      "email": email,
+      "isActive": "active",
+      "imgUrl": "url"
     };
     addUser(uid, map);
     return user;
