@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "523120930800",
+    "firebase_url": "https://ichat-43add.firebaseio.com",
+    "project_id": "ichat-43add",
+    "storage_bucket": "ichat-43add.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523120930800:android:bba25cd74359564d",
+        "android_client_info": {
+          "package_name": "com.example.ichat_pfe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523120930800-im2c5i47ejv1248vrdv4v2pq4duk9tnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPaYYNuc50GzWJ4YsO1YJPHLGqGv4IHqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523120930800-im2c5i47ejv1248vrdv4v2pq4duk9tnu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
