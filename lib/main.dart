@@ -17,6 +17,7 @@ void main(List<String> args) {
         accentColor: Color(0xff4e54c8),
         canvasColor: Color(0xff4e54c8),
         backgroundColor: Color(0xff4e54c8),
+        textTheme: TextTheme(body1: TextStyle(fontFamily: 'baloo'))
         ),
   ));
 }

@@ -20,33 +20,44 @@ class _ContactsState extends State<Contacts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(LineIcons.edit),
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xff4e54c8),
-        onPressed: (){},
-        elevation: 2,
-      ),
-      backgroundColor: Colors.transparent,
-        body: FirebaseAnimatedList(
-          query: FirebaseUtils().base_user,
-          sort: (a, b) => a.value["name"].compareTo(b.value["name"]),
-          itemBuilder: (context, snapshot, animation, index) {
-            User newUser = new User(snapshot);
-            if (newUser.id == widget.id)
-              return Container();
-            else {
-              print(newUser.imgUrl);
-              return UserTail(
-                user: newUser,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (ctx) => ChatPage(
-                              id: widget.id,
-                              partner: newUser,
-                            ))),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(LineIcons.edit),
+          backgroundColor: Colors.white,
+          foregroundColor: Color(0xff4e54c8),
+          onPressed: () {},
+          elevation: 2,
+        ),
+        backgroundColor: Colors.transparent,
+        body: FutureBuilder(
+          future: FirebaseUtils().getUser(widget.id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return FirebaseAnimatedList(
+                query: FirebaseUtils().base_user,
+                sort: (a, b) => a.value["name"].compareTo(b.value["name"]),
+                itemBuilder: (context, snapshot, animation, index) {
+                  User newUser = new User(snapshot);
+                  if (newUser.id == widget.id)
+                    return Container();
+                  else {
+                    print(newUser.imgUrl);
+                    return UserTail(
+                      user: newUser,
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ctx) => ChatPage(
+                                    id: widget.id,
+                                    partner: newUser,
+                                  ))),
+                    );
+                  }
+                },
               );
+            } else {
+              return Center(
+              child: Text("Loading contacts..",style: TextStyle(color: Colors.white,fontSize: 18),),
+            );
             }
           },
         ));

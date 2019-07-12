@@ -19,30 +19,41 @@ class _MsgPageState extends State<MsgPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: FirebaseAnimatedList(
-        query: FirebaseUtils().base_chat.child(widget.id),
-        sort: (a, b) => b.value["dateString"].compareTo(a.value["dateString"]),
-        itemBuilder: (context, snapshot, animation, index) {
-          Chat chat = new Chat(snapshot);
-          String subtitle = (chat.id == widget.id) ? "you: " : "";
-          subtitle += chat.last_message ?? "image sent";
-          return MessageTail(
-              initials: chat.user.initiales,
-              lastMsg: subtitle.length > 15
-                  ? subtitle.substring(0, 15) + ".."
-                  : subtitle,
-              name: chat.user.name,
-              time: chat.date,
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (ctx) => ChatPage(
-                            id: widget.id,
-                            partner: chat.user,
-                          ))));
-        },
-      ),
-    );
+        backgroundColor: Colors.transparent,
+        body: FutureBuilder(
+          future: FirebaseUtils().getUser(widget.id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return FirebaseAnimatedList(
+                query: FirebaseUtils().base_chat.child(widget.id),
+                sort: (a, b) =>
+                    b.value["dateString"].compareTo(a.value["dateString"]),
+                itemBuilder: (context, snapshot, animation, index) {
+                  Chat chat = new Chat(snapshot);
+                  String subtitle = (chat.id == widget.id) ? "you: " : "";
+                  subtitle += chat.last_message ?? "image sent";
+                  return MessageTail(
+                      initials: chat.user.initiales,
+                      lastMsg: subtitle.length > 15
+                          ? subtitle.substring(0, 15) + ".."
+                          : subtitle,
+                      name: chat.user.name,
+                      time: chat.date,
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ctx) => ChatPage(
+                                    id: widget.id,
+                                    partner: chat.user,
+                                  ))));
+                },
+              );
+            }else{
+              return Center(
+              child: Text("Loading messages..",style: TextStyle(color: Colors.white,fontSize: 18),),
+            );
+            }
+          },
+        ));
   }
 }

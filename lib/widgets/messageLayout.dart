@@ -38,10 +38,10 @@ class ChatBubble extends StatelessWidget {
 
     return <Widget>[
       me
-          ? Padding(padding: EdgeInsets.all(8.0))
-          : Image.network(
-              partner.imgUrl,
-            ),
+          ? Padding(padding: EdgeInsets.all(8.0)):Container(),
+          // : Image.network(
+          //     partner.imgUrl,
+          //   ),
       Expanded(
           child: Column(
         crossAxisAlignment: alignement,
@@ -66,10 +66,11 @@ class ChatBubble extends StatelessWidget {
                           color: textColor,
                           fontSize: 15.0,
                         ),
-                      )
-                    : Image.network(
-                        message.imageUrl,
-                      )),
+                      ):Container(),
+                    // : Image.network(
+                    //     message.imageUrl,
+                    //   )
+                    ),
           )
         ],
       ))

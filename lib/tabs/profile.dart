@@ -51,14 +51,14 @@ class _ProfileState extends State<Profile> {
                                 CachedNetworkImageProvider(user.imgUrl),
                             radius: MediaQuery.of(context).size.width/4,
                           )),
-                          Divider(color: Colors.white,height: 1.5,),
+                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
                           Container(
                             child: Text(user.name,style: TextStyle(color: Colors.white,fontSize: 30),),
                           ),
                           Container(
                             child: Text(user.email,style: TextStyle(color: Colors.white.withOpacity(.5),fontSize: 18),),
                           ),
-                          Divider(color: Colors.white,height: 1.5,),
+                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
                           Container(
                             child: ListTile(
                               onTap: (){},
@@ -68,11 +68,12 @@ class _ProfileState extends State<Profile> {
                                 radius: 28,
                                 child: Icon(LineIcons.key),
                               ),
+                              trailing: Icon(LineIcons.info_circle,color:Colors.white),
                               title: Text("Change Password",style: TextStyle(color: Colors.white,fontSize: 18)),
                               subtitle: Text("press to update password",style: TextStyle(color: Colors.white,fontSize: 12)),
                             ),
                           ),
-                          Divider(color: Colors.white,height: 1.5,),
+                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
                           Container(
                             child: ListTile(
                               onTap: (){},
@@ -82,10 +83,12 @@ class _ProfileState extends State<Profile> {
                                 radius: 28,
                                 child: Icon(LineIcons.key),
                               ),
+                              trailing: Icon(LineIcons.info_circle,color:Colors.white),
                               title: Text("Delete Account",style: TextStyle(color: Colors.white,fontSize: 18)),
                               subtitle: Text("delete all your informations",style: TextStyle(color: Colors.white,fontSize: 12)),
                             ),
                           ),
+                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
               ],
             );
           } else {
