@@ -14,7 +14,7 @@ class MessageTail extends StatelessWidget {
                 margin: EdgeInsets.all(4),
                 padding: EdgeInsets.only(top:6,bottom: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.1),
+                  color: Colors.white.withOpacity(.04),
                   borderRadius: BorderRadius.all(Radius.circular(10))
                   
                 ),
@@ -25,7 +25,7 @@ class MessageTail extends StatelessWidget {
                     maxRadius: 28,
                   ),
                   title: Text(name,style: TextStyle(color: Colors.white,fontSize: 22)),
-                  subtitle: Text(lastMsg,style: TextStyle(color: Colors.white.withOpacity(.8),fontSize: 18)),
+                  subtitle: Text(lastMsg,style: TextStyle(color: Colors.white.withOpacity(.6),fontSize: 16)),
                   trailing: Text(time,style: TextStyle(color: Colors.white,fontSize: 18)),
                   onTap: onTap,
                 ),

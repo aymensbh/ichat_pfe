@@ -17,8 +17,30 @@ void main(List<String> args) {
         accentColor: Color(0xff4e54c8),
         canvasColor: Color(0xff4e54c8),
         backgroundColor: Color(0xff4e54c8),
-        textTheme: TextTheme(body1: TextStyle(fontFamily: 'baloo'))
+        tabBarTheme: TabBarTheme(
+          labelStyle: TextStyle(fontFamily: 'baloo'),
+          unselectedLabelStyle: TextStyle(fontFamily: 'baloo',color: Colors.white.withOpacity(.4)),
         ),
+        appBarTheme: AppBarTheme(
+            textTheme: TextTheme(
+                body1: TextStyle(fontFamily: 'baloo'),
+                body2: TextStyle(fontFamily: 'baloo'),
+                title: TextStyle(fontFamily: 'baloo',fontSize: 22))),
+        textTheme: TextTheme(
+          body1: TextStyle(fontFamily: 'baloo'),
+          body2: TextStyle(fontFamily: 'baloo'),
+          button: TextStyle(fontFamily: 'baloo'),
+          display1: TextStyle(fontFamily: 'baloo'),
+          display2: TextStyle(fontFamily: 'baloo'),
+          display3: TextStyle(fontFamily: 'baloo'),
+          display4: TextStyle(fontFamily: 'baloo'),
+          title: TextStyle(fontFamily: 'baloo'),
+          subtitle: TextStyle(fontFamily: 'baloo'),
+          caption: TextStyle(fontFamily: 'baloo'),
+          headline: TextStyle(fontFamily: 'baloo'),
+          overline: TextStyle(fontFamily: 'baloo'),
+          subhead: TextStyle(fontFamily: 'baloo'),
+        )),
   ));
 }
 

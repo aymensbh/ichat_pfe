@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
                         ? CircleAvatar(
                             backgroundColor: Colors.white,
                             child: Text(user.initiales,
-                                style: TextStyle(color: Color(0xff4e54c8))),
+                                style: TextStyle(color: Color(0xff4e54c8),fontSize: MediaQuery.of(context).size.width/5)),
                             radius: MediaQuery.of(context).size.width/4,
                           )
                         : CircleAvatar(
@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
                             child: ListTile(
                               onTap: (){},
                               leading: CircleAvatar(
-                                backgroundColor: Colors.greenAccent,
+                                backgroundColor: Colors.greenAccent.withOpacity(.6),
                                 foregroundColor: Colors.white,
                                 radius: 28,
                                 child: Icon(LineIcons.key),
@@ -78,10 +78,10 @@ class _ProfileState extends State<Profile> {
                             child: ListTile(
                               onTap: (){},
                               leading: CircleAvatar(
-                                backgroundColor: Colors.redAccent,
+                                backgroundColor: Colors.redAccent.withOpacity(.6),
                                 foregroundColor: Colors.white,
                                 radius: 28,
-                                child: Icon(LineIcons.key),
+                                child: Icon(Icons.remove_circle_outline),
                               ),
                               trailing: Icon(LineIcons.info_circle,color:Colors.white),
                               title: Text("Delete Account",style: TextStyle(color: Colors.white,fontSize: 18)),
@@ -93,7 +93,7 @@ class _ProfileState extends State<Profile> {
             );
           } else {
             return Center(
-              child: Text("Loading..",style: TextStyle(color: Colors.white,fontSize: 18),),
+              child: Text("Loading profile..",style: TextStyle(color: Colors.white,fontSize: 18),),
             );
           }
         },

@@ -14,7 +14,7 @@ class UserTail extends StatelessWidget {
       margin: EdgeInsets.all(4),
       padding: EdgeInsets.only(top: 6, bottom: 6),
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(.1),
+          color: Colors.white.withOpacity(.04),
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: ListTile(
         leading: user.imgUrl.isEmpty
@@ -33,10 +33,10 @@ class UserTail extends StatelessWidget {
                 maxRadius: 28,
               ),
         title: Text(user.name,
-            style: TextStyle(color: Colors.white, fontSize: 22)),
+            style: TextStyle(color: Colors.white, fontSize: 24)),
         subtitle: Text(user.email,
             style:
-                TextStyle(color: Colors.white.withOpacity(.8), fontSize: 18)),
+                TextStyle(color: Colors.white.withOpacity(.6), fontSize: 16)),
         trailing: Text(user.isActive,
             style: TextStyle(color: Colors.white, fontSize: 18)),
         onTap: onTap,

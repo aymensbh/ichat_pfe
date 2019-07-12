@@ -80,7 +80,7 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Text("Login",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontFamily: "Baloo")),
+                                        fontFamily: "Baloo",fontSize: 20)),
                               )),
                         )),
                     Container(
@@ -102,7 +102,7 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Text("Signup",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontFamily: "Baloo")),
+                                        fontFamily: "Baloo",fontSize: 20)),
                               )),
                         )),
                   ],

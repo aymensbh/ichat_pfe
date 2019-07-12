@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
                 body: Container(
-                  color: Color(0xff4e54c8),
+                  color: Colors.transparent,
                   child: Center(
                     child: Text(
                       "Loading..",
