@@ -43,57 +43,97 @@ class _ProfileState extends State<Profile> {
                         ? CircleAvatar(
                             backgroundColor: Colors.white,
                             child: Text(user.initiales,
-                                style: TextStyle(color: Color(0xff4e54c8),fontSize: MediaQuery.of(context).size.width/5)),
-                            radius: MediaQuery.of(context).size.width/4,
+                                style: TextStyle(
+                                    color: Color(0xff4e54c8),
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 5)),
+                            radius: MediaQuery.of(context).size.width / 4,
                           )
                         : CircleAvatar(
                             backgroundImage:
                                 CachedNetworkImageProvider(user.imgUrl),
-                            radius: MediaQuery.of(context).size.width/4,
+                            radius: MediaQuery.of(context).size.width / 4,
                           )),
-                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
-                          Container(
-                            child: Text(user.name,style: TextStyle(color: Colors.white,fontSize: 30),),
-                          ),
-                          Container(
-                            child: Text(user.email,style: TextStyle(color: Colors.white.withOpacity(.5),fontSize: 18),),
-                          ),
-                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
-                          Container(
-                            child: ListTile(
-                              onTap: (){},
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.greenAccent.withOpacity(.6),
-                                foregroundColor: Colors.white,
-                                radius: 28,
-                                child: Icon(LineIcons.key),
-                              ),
-                              trailing: Icon(LineIcons.info_circle,color:Colors.white),
-                              title: Text("Change Password",style: TextStyle(color: Colors.white,fontSize: 18)),
-                              subtitle: Text("press to update password",style: TextStyle(color: Colors.white,fontSize: 12)),
-                            ),
-                          ),
-                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
-                          Container(
-                            child: ListTile(
-                              onTap: (){},
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.redAccent.withOpacity(.6),
-                                foregroundColor: Colors.white,
-                                radius: 28,
-                                child: Icon(Icons.remove_circle_outline),
-                              ),
-                              trailing: Icon(LineIcons.info_circle,color:Colors.white),
-                              title: Text("Delete Account",style: TextStyle(color: Colors.white,fontSize: 18)),
-                              subtitle: Text("delete all your informations",style: TextStyle(color: Colors.white,fontSize: 12)),
-                            ),
-                          ),
-                          Divider(color: Colors.white.withOpacity(.2),height: 1.5,),
+                Divider(
+                  color: Colors.white.withOpacity(.2),
+                  height: 1.5,
+                ),
+                Container(
+                  child: Text(
+                    user.name,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width / 10),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    user.email,
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(.5),
+                        fontSize: MediaQuery.of(context).size.width / 20),
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(.2),
+                  height: 1.5,
+                ),
+                Container(
+                  child: ListTile(
+                    onTap: () {},
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.greenAccent.withOpacity(.6),
+                      foregroundColor: Colors.white,
+                      radius: 28,
+                      child: Icon(LineIcons.key),
+                    ),
+                    trailing: Icon(LineIcons.info_circle, color: Colors.white),
+                    title: Text("Change Password",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 18)),
+                    subtitle: Text("press to update password",
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(.6),
+                            fontSize: MediaQuery.of(context).size.width / 25)),
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(.2),
+                  height: 1.5,
+                ),
+                Container(
+                  child: ListTile(
+                    onTap: () {},
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.redAccent.withOpacity(.6),
+                      foregroundColor: Colors.white,
+                      radius: 28,
+                      child: Icon(Icons.remove_circle_outline),
+                    ),
+                    trailing: Icon(LineIcons.info_circle, color: Colors.white),
+                    title: Text("Delete Account",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 18)),
+                    subtitle: Text("delete all your informations",
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(.6),
+                            fontSize: MediaQuery.of(context).size.width / 25)),
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(.2),
+                  height: 1.5,
+                ),
               ],
             );
           } else {
             return Center(
-              child: Text("Loading profile..",style: TextStyle(color: Colors.white,fontSize: 18),),
+              child: Text(
+                "Loading profile..",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             );
           }
         },

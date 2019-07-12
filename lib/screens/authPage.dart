@@ -21,7 +21,7 @@ class _AuthPageState extends State<AuthPage> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [Color(0xff1CD8D2), Color(0xff93EDC7)],
+            colors: [ Color(0xff93EDC7),Color(0xff1CD8D2),],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight),
       ),

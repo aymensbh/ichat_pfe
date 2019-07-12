@@ -33,12 +33,12 @@ class UserTail extends StatelessWidget {
                 maxRadius: 28,
               ),
         title: Text(user.name,
-            style: TextStyle(color: Colors.white, fontSize: 24)),
+            style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width / 16)),
         subtitle: Text(user.email,
             style:
-                TextStyle(color: Colors.white.withOpacity(.6), fontSize: 16)),
+                TextStyle(color: Colors.white.withOpacity(.6), fontSize: MediaQuery.of(context).size.width / 24)),
         trailing: Text(user.isActive,
-            style: TextStyle(color: Colors.white, fontSize: 18)),
+            style: TextStyle(color: Colors.greenAccent, fontSize: MediaQuery.of(context).size.width / 22)),
         onTap: onTap,
       ),
     );
