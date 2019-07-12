@@ -18,10 +18,12 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _tabController = new TabController(vsync: this, length: 3, initialIndex: 0);
-    FirebaseUtils().myId().then((uid) {
+    FirebaseUtils().myId().then((uid) async {
       setState(() {
         id = uid;
       });
+
+      await FirebaseUtils().base_user.child(id).update({"isActive": "Active"});
     });
 
     super.initState();
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage>
               backgroundColor: Colors.transparent,
               appBar: AppBar(
                 // backgroundColor: Color(0xff1CD8D2),
-              backgroundColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
                 elevation: 0,
                 title: Text("iChat"),
                 actions: <Widget>[
@@ -60,10 +62,15 @@ class _HomePageState extends State<HomePage>
                   //   onPressed: () {},
                   // ),
                   PopupMenuButton(
-                    onSelected: (value) {
+                    onSelected: (value) async{
                       //TODO: add actions
                       if (value == 3) {
-                        FirebaseUtils().logOut();
+                        await FirebaseUtils()
+                            .base_user
+                            .child(id)
+                            .update({"isActive": ""}).then((onValue) {
+                          FirebaseUtils().logOut();
+                        });
                       }
                     },
                     itemBuilder: (context) => [
@@ -141,10 +148,10 @@ class _HomePageState extends State<HomePage>
           } else {
             return Scaffold(
                 // backgroundColor: Color(0xff1CD8D2),
-              backgroundColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
                 appBar: AppBar(
                   // backgroundColor: Color(0xff1CD8D2),
-              backgroundColor: Colors.transparent,
+                  backgroundColor: Colors.transparent,
                   elevation: 0,
                   title: Text("Loading.."),
                   actions: <Widget>[

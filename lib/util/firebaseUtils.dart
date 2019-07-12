@@ -24,8 +24,7 @@ class FirebaseUtils {
   }
 
   Future<bool> logOut() async {
-    await firebaseAuth.signOut().then((onValue) {
-      // base_user.child(onValue)
+    await firebaseAuth.signOut().then((onValue) async{
     });
     return true;
   }
@@ -87,7 +86,7 @@ class FirebaseUtils {
       "uid": uid,
       "name": name,
       "email": email,
-      "isActive": "active",
+      "isActive": "Active",
       "imgUrl": ""
     };
     addUser(uid, map);
