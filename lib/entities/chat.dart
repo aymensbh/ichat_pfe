@@ -3,7 +3,6 @@ import 'package:ichat_pfe/entities/user.dart';
 import 'package:ichat_pfe/util/timeUtiles.dart';
 
 class Chat {
-
   String id;
   String last_message;
   String date;
@@ -16,6 +15,4 @@ class Chat {
     this.last_message = snapshot.value["last_message"];
     user = new User(snapshot);
   }
-
-
 }

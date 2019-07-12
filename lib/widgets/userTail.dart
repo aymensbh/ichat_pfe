@@ -5,8 +5,9 @@ import 'package:ichat_pfe/entities/user.dart';
 
 class UserTail extends StatelessWidget {
   final User user;
+  final GestureTapCallback onTap;
 
-  const UserTail({Key key, this.user}) : super(key: key);
+  const UserTail({Key key, this.user, this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +31,7 @@ class UserTail extends StatelessWidget {
                   title: Text(user.name,style: TextStyle(color: Colors.white,fontSize: 22)),
                   subtitle: Text(user.email,style: TextStyle(color: Colors.white.withOpacity(.8),fontSize: 18)),
                   trailing: Text(user.isActive,style: TextStyle(color: Colors.white,fontSize: 18)),
+                  onTap: onTap,
                 ),
               );
   }

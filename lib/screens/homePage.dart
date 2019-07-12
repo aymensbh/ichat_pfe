@@ -35,7 +35,11 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return FutureBuilder(
+      future: FirebaseUtils().firebaseAuth.currentUser(),
+      builder: (context,snapshot){
+        if(snapshot.connectionState==ConnectionState.done){
+          return Scaffold(
       backgroundColor: Color(0xff1CD8D2),
       appBar: AppBar(
         backgroundColor: Color(0xff1CD8D2),
@@ -98,7 +102,7 @@ class _HomePageState extends State<HomePage>
         ],
         bottom: TabBar(
           indicatorColor: Colors.white.withOpacity(.8),
-          indicatorSize: TabBarIndicatorSize.label,
+          indicatorSize: TabBarIndicatorSize.tab,
           controller: _tabController,
           tabs: <Widget>[
             Tab(
@@ -124,6 +128,78 @@ class _HomePageState extends State<HomePage>
           Profile(id: id),
         ],
       ),
+    );
+        }else{
+          return Scaffold(
+      backgroundColor: Color(0xff1CD8D2),
+      appBar: AppBar(
+        backgroundColor: Color(0xff1CD8D2),
+        elevation: 0,
+        title: Text("Loading.."),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineIcons.search),
+            onPressed: (){},
+          ),
+          PopupMenuButton(
+            onSelected: (value) {
+              //TODO: add actions
+              if (value == 3) {
+              }
+            },
+            itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("About"),
+                        Icon(
+                          Icons.help_outline,
+                          color: Colors.orange,
+                        )
+                      ],
+                    ),
+                    value: 1,
+                  ),
+                  PopupMenuItem(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("Github"),
+                        Icon(
+                          LineIcons.github,
+                          color: Colors.green,
+                        )
+                      ],
+                    ),
+                    value: 2,
+                  ),
+                  PopupMenuItem(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("Logout"),
+                        Icon(
+                          Icons.exit_to_app,
+                          color: Colors.redAccent,
+                        )
+                      ],
+                    ),
+                    value: 3,
+                  )
+                ],
+          )
+        ],
+      ),
+      body: Container(
+        color: Color(0xff1CD8D2),
+        child: Center(
+          child: Text("Loading..",style: TextStyle(color: Colors.white),),
+        ),
+      )
+    );
+        }
+      },
     );
   }
 }

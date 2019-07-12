@@ -27,9 +27,7 @@ class MessageTail extends StatelessWidget {
                   title: Text(name,style: TextStyle(color: Colors.white,fontSize: 22)),
                   subtitle: Text(lastMsg,style: TextStyle(color: Colors.white.withOpacity(.8),fontSize: 18)),
                   trailing: Text(time,style: TextStyle(color: Colors.white,fontSize: 18)),
-                  onTap: (){
-                    
-                  },
+                  onTap: onTap,
                 ),
               );
   }
