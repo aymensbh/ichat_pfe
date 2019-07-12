@@ -14,9 +14,9 @@ void main(List<String> args) {
     debugShowCheckedModeBanner: false,
     home: Router(),
     theme: ThemeData(
-        accentColor: Color(0xff1CD8D2),
-        canvasColor: Color(0xff1CD8D2),
-        backgroundColor: Color(0xff1CD8D2),
+        accentColor: Color(0xff4e54c8),
+        canvasColor: Color(0xff4e54c8),
+        backgroundColor: Color(0xff4e54c8),
         ),
   ));
 }

@@ -4,6 +4,7 @@ import 'package:ichat_pfe/entities/chat.dart';
 import 'package:ichat_pfe/tabs/chatPage.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:ichat_pfe/widgets/messageTail.dart';
+import 'package:line_icons/line_icons.dart';
 
 class MsgPage extends StatefulWidget {
   final String id;
@@ -17,9 +18,9 @@ class MsgPage extends StatefulWidget {
 class _MsgPageState extends State<MsgPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xff1CD8D2),
-      child: FirebaseAnimatedList(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: FirebaseAnimatedList(
         query: FirebaseUtils().base_chat.child(widget.id),
         sort: (a, b) => b.value["dateString"].compareTo(a.value["dateString"]),
         itemBuilder: (context, snapshot, animation, index) {

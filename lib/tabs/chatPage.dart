@@ -27,7 +27,7 @@ class _ChatPageState extends State<ChatPage> {
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         elevation: 2,
-        backgroundColor: Color(0xff1CD8D2),
+        backgroundColor: Color(0xff4e54c8),
         title: Text(widget.partner.name),
       ),
       body: Container(
@@ -107,7 +107,7 @@ class _TextZoneState extends State<TextZone> {
             child: IconButton(
               icon: Icon(
                 LineIcons.photo,
-                color: Color(0xff1CD8D2)
+                color: Color(0xff4e54c8)
               ),
               onPressed: () {
                 takePicture(ImageSource.gallery);
@@ -136,14 +136,14 @@ class _TextZoneState extends State<TextZone> {
                     fillColor: Color.fromRGBO(240, 252, 252, 1),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Color(0xff1CD8D2),
+                        color: Color(0xff4e54c8),
                          width: 1),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     filled: true,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Color(0xff1CD8D2),
+                        color: Color(0xff4e54c8),
                          width: 1),
                       borderRadius: BorderRadius.circular(30),
                     )),
@@ -155,7 +155,7 @@ class _TextZoneState extends State<TextZone> {
             child: IconButton(
               icon: Icon(
                 Icons.send,
-                color: Color(0xff1CD8D2),
+                color: Color(0xff4e54c8),
               ),
               onPressed: _sendButtonPressed(),
             ),

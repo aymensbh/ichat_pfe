@@ -35,172 +35,187 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: FirebaseUtils().firebaseAuth.currentUser(),
-      builder: (context,snapshot){
-        if(snapshot.connectionState==ConnectionState.done){
-          return Scaffold(
-      backgroundColor: Color(0xff1CD8D2),
-      appBar: AppBar(
-        backgroundColor: Color(0xff1CD8D2),
-        elevation: 0,
-        title: Text("iChat"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(LineIcons.search),
-            onPressed: (){},
-          ),
-          PopupMenuButton(
-            onSelected: (value) {
-              //TODO: add actions
-              if (value == 3) {
-                FirebaseUtils().logOut();
-              }
-            },
-            itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("About"),
-                        Icon(
-                          Icons.help_outline,
-                          color: Colors.orange,
-                        )
-                      ],
-                    ),
-                    value: 1,
-                  ),
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("Github"),
-                        Icon(
-                          LineIcons.github,
-                          color: Colors.green,
-                        )
-                      ],
-                    ),
-                    value: 2,
-                  ),
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("Logout"),
-                        Icon(
-                          Icons.exit_to_app,
-                          color: Colors.redAccent,
-                        )
-                      ],
-                    ),
-                    value: 3,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Color(0xff4e54c8), Color(0xff8f94fb)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+      ),
+      child: FutureBuilder(
+        future: FirebaseUtils().firebaseAuth.currentUser(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Scaffold(
+              // backgroundColor: Color(0xff1CD8D2),
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                // backgroundColor: Color(0xff1CD8D2),
+              backgroundColor: Colors.transparent,
+                elevation: 0,
+                title: Text("iChat"),
+                actions: <Widget>[
+                  // IconButton(
+                  //   icon: Icon(LineIcons.search),
+                  //   onPressed: () {},
+                  // ),
+                  PopupMenuButton(
+                    onSelected: (value) {
+                      //TODO: add actions
+                      if (value == 3) {
+                        FirebaseUtils().logOut();
+                      }
+                    },
+                    itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text("About"),
+                                Icon(
+                                  Icons.help_outline,
+                                  color: Colors.orange,
+                                )
+                              ],
+                            ),
+                            value: 1,
+                          ),
+                          PopupMenuItem(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text("Github"),
+                                Icon(
+                                  LineIcons.github,
+                                  color: Colors.green,
+                                )
+                              ],
+                            ),
+                            value: 2,
+                          ),
+                          PopupMenuItem(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text("Logout"),
+                                Icon(
+                                  Icons.exit_to_app,
+                                  color: Colors.redAccent,
+                                )
+                              ],
+                            ),
+                            value: 3,
+                          )
+                        ],
                   )
                 ],
-          )
-        ],
-        bottom: TabBar(
-          indicatorColor: Colors.white.withOpacity(.8),
-          indicatorSize: TabBarIndicatorSize.tab,
-          controller: _tabController,
-          tabs: <Widget>[
-            Tab(
-              text: "Messages",
-              icon: Icon(LineIcons.comments),
-            ),
-            Tab(
-              text: "Contacts",
-              icon: Icon(LineIcons.users),
-            ),
-            Tab(
-              text: "Profile",
-              icon: Icon(LineIcons.user),
-            )
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: <Widget>[
-          MsgPage(id: id),
-          Contacts(id: id),
-          Profile(id: id),
-        ],
-      ),
-    );
-        }else{
-          return Scaffold(
-      backgroundColor: Color(0xff1CD8D2),
-      appBar: AppBar(
-        backgroundColor: Color(0xff1CD8D2),
-        elevation: 0,
-        title: Text("Loading.."),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(LineIcons.search),
-            onPressed: (){},
-          ),
-          PopupMenuButton(
-            onSelected: (value) {
-              //TODO: add actions
-              if (value == 3) {
-              }
-            },
-            itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("About"),
-                        Icon(
-                          Icons.help_outline,
-                          color: Colors.orange,
-                        )
-                      ],
+                bottom: TabBar(
+                  indicatorColor: Colors.white.withOpacity(.8),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  controller: _tabController,
+                  tabs: <Widget>[
+                    Tab(
+                      text: "Messages",
+                      icon: Icon(LineIcons.comments),
                     ),
-                    value: 1,
-                  ),
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("Github"),
-                        Icon(
-                          LineIcons.github,
-                          color: Colors.green,
-                        )
-                      ],
+                    Tab(
+                      text: "Contacts",
+                      icon: Icon(LineIcons.users),
                     ),
-                    value: 2,
-                  ),
-                  PopupMenuItem(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("Logout"),
-                        Icon(
-                          Icons.exit_to_app,
-                          color: Colors.redAccent,
-                        )
-                      ],
-                    ),
-                    value: 3,
-                  )
+                    Tab(
+                      text: "Profile",
+                      icon: Icon(LineIcons.user),
+                    )
+                  ],
+                ),
+              ),
+              body: TabBarView(
+                controller: _tabController,
+                children: <Widget>[
+                  MsgPage(id: id),
+                  Contacts(id: id),
+                  Profile(id: id),
                 ],
-          )
-        ],
+              ),
+            );
+          } else {
+            return Scaffold(
+                // backgroundColor: Color(0xff1CD8D2),
+              backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  // backgroundColor: Color(0xff1CD8D2),
+              backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  title: Text("Loading.."),
+                  actions: <Widget>[
+                    // IconButton(
+                    //   icon: Icon(LineIcons.search),
+                    //   onPressed: () {},
+                    // ),
+                    PopupMenuButton(
+                      onSelected: (value) {
+                        //TODO: add actions
+                        if (value == 3) {}
+                      },
+                      itemBuilder: (context) => [
+                            PopupMenuItem(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text("About"),
+                                  Icon(
+                                    Icons.help_outline,
+                                    color: Colors.orange,
+                                  )
+                                ],
+                              ),
+                              value: 1,
+                            ),
+                            PopupMenuItem(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text("Github"),
+                                  Icon(
+                                    LineIcons.github,
+                                    color: Colors.green,
+                                  )
+                                ],
+                              ),
+                              value: 2,
+                            ),
+                            PopupMenuItem(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text("Logout"),
+                                  Icon(
+                                    Icons.exit_to_app,
+                                    color: Colors.redAccent,
+                                  )
+                                ],
+                              ),
+                              value: 3,
+                            )
+                          ],
+                    )
+                  ],
+                ),
+                body: Container(
+                  color: Color(0xff4e54c8),
+                  child: Center(
+                    child: Text(
+                      "Loading..",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ));
+          }
+        },
       ),
-      body: Container(
-        color: Color(0xff1CD8D2),
-        child: Center(
-          child: Text("Loading..",style: TextStyle(color: Colors.white),),
-        ),
-      )
-    );
-        }
-      },
     );
   }
 }
-

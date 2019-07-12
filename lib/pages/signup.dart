@@ -13,7 +13,7 @@ void signup(BuildContext context) {
           contentPadding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
           title: Text(
             "Signup",
-            style: TextStyle(fontFamily: "Baloo", fontSize: 28),
+            style: TextStyle(fontFamily: "Baloo", fontSize: 28,color: Colors.black.withOpacity(.6)),
           ),
           children: <Widget>[
             Form(

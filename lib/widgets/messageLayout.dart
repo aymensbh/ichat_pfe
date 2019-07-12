@@ -30,7 +30,7 @@ class ChatBubble extends StatelessWidget {
   List<Widget> widgetsBubble(bool me, BuildContext context) {
     CrossAxisAlignment alignement =
         (me) ? CrossAxisAlignment.end : CrossAxisAlignment.start;
-    Color bubbleColor = (me) ? Color(0xff1CD8D2) : Colors.grey.withOpacity(.2);
+    Color bubbleColor = (me) ? Color(0xff4e54c8).withOpacity(.8) : Colors.grey.withOpacity(.2);
     Color textColor = (me) ? Colors.white : Colors.black.withOpacity(.7);
     EdgeInsets cardMargin = (me)
         ? EdgeInsets.only(left: MediaQuery.of(context).size.width / 3)
