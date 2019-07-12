@@ -27,12 +27,19 @@ class _MsgPageState extends State<MsgPage> {
           String subtitle = (chat.id == widget.id) ? "you: " : "";
           subtitle += chat.last_message ?? "image sent";
           return MessageTail(
-            initials: chat.user.initiales,
-            lastMsg: subtitle.substring(0,15)+"..",
-            name: chat.user.name,
-            time: chat.date,
-            onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ChatPage(id: widget.id,partner: chat.user,)))
-          );
+              initials: chat.user.initiales,
+              lastMsg: subtitle.length > 15
+                  ? subtitle.substring(0, 15) + ".."
+                  : subtitle,
+              name: chat.user.name,
+              time: chat.date,
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => ChatPage(
+                            id: widget.id,
+                            partner: chat.user,
+                          ))));
         },
       ),
     );

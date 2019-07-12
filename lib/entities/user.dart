@@ -16,7 +16,7 @@ class User {
     email=map["email"];
     imgUrl = map["imgUrl"];
     if (name != null && name.length > 0) {
-      initiales = name[0]+name[1];
+      initiales = name[0].toUpperCase()+name[1].toLowerCase();
     }
   }
 
