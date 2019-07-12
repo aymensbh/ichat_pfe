@@ -9,6 +9,7 @@ void signup(BuildContext context) {
       context: context,
       builder: (ctx) {
         return SimpleDialog(
+          elevation: 1,
           backgroundColor: Colors.white,
           contentPadding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
           title: Text(
