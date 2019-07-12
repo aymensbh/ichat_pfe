@@ -88,7 +88,7 @@ class FirebaseUtils {
       "name": name,
       "email": email,
       "isActive": "active",
-      "imgUrl": null
+      "imgUrl": ""
     };
     addUser(uid, map);
     return user;
