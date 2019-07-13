@@ -15,11 +15,13 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new SizeTransition(
-      sizeFactor: new CurvedAnimation(parent: animation, curve: Curves.easeIn),
-      child: new Container(
+    print(message.from);
+    return SizeTransition(
+      sizeFactor:
+          CurvedAnimation(parent: animation, curve: Curves.bounceOut),
+      child: Container(
         margin: EdgeInsets.all(10.0),
-        child: new Row(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: widgetsBubble(message.from == myid, context),
         ),
@@ -30,7 +32,8 @@ class ChatBubble extends StatelessWidget {
   List<Widget> widgetsBubble(bool me, BuildContext context) {
     CrossAxisAlignment alignement =
         (me) ? CrossAxisAlignment.end : CrossAxisAlignment.start;
-    Color bubbleColor = (me) ? Color(0xff4e54c8).withOpacity(.8) : Colors.grey.withOpacity(.2);
+    Color bubbleColor =
+        (me) ? Color(0xff4e54c8).withOpacity(.8) : Colors.grey.withOpacity(.2);
     Color textColor = (me) ? Colors.white : Colors.black.withOpacity(.7);
     EdgeInsets cardMargin = (me)
         ? EdgeInsets.only(left: MediaQuery.of(context).size.width / 3)
@@ -38,10 +41,8 @@ class ChatBubble extends StatelessWidget {
 
     return <Widget>[
       me
-          ? Padding(padding: EdgeInsets.all(8.0)):Container(),
-          // : Image.network(
-          //     partner.imgUrl,
-          //   ),
+          ? Padding(padding: EdgeInsets.all(8.0))
+          : Container(),
       Expanded(
           child: Column(
         crossAxisAlignment: alignement,
@@ -55,22 +56,22 @@ class ChatBubble extends StatelessWidget {
             margin: cardMargin,
             elevation: 0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
+                borderRadius: BorderRadius.circular(4.0)),
             color: bubbleColor,
             child: Container(
-                padding: EdgeInsets.all(10.0),
-                child: (message.imageUrl == null)
-                    ? Text(
-                        message.text ?? "",
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 15.0,
-                        ),
-                      ):Container(),
-                    // : Image.network(
-                    //     message.imageUrl,
-                    //   )
+              padding: EdgeInsets.all(8.0),
+              child: (message.imageUrl == null)
+                  ? Text(
+                      message.text ?? "",
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 15.0,
+                      ),
+                    )
+                  : Image.network(
+                      message.imageUrl,
                     ),
+            ),
           )
         ],
       ))

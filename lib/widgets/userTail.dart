@@ -25,8 +25,7 @@ class UserTail extends StatelessWidget {
                 //  Text(user.initiales,
                 //     style: TextStyle(color: Color(0xff4e54c8))),
                 maxRadius: 28,
-              )
-            : 
+              ): 
             CircleAvatar(
                 backgroundImage: CachedNetworkImageProvider(
                   user.imgUrl,

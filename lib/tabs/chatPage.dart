@@ -27,6 +27,35 @@ class _ChatPageState extends State<ChatPage> {
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.delete_outline, color: Colors.white),
+            onPressed: () async {
+              await FirebaseUtils()
+                  .base_message
+                  .child(FirebaseUtils()
+                      .getMessageRef(widget.id, widget.partner.id))
+                  .remove()
+                  .then((onValue) async {
+                await FirebaseUtils()
+                    .base_chat
+                    .child(widget.id)
+                    .child(widget.partner.id)
+                    .remove()
+                    .then((onValue) async {
+                  await FirebaseUtils()
+                      .base_chat
+                      .child(widget.partner.id)
+                      .child(widget.id)
+                      .remove();
+                });
+                Navigator.pop(context);
+              }).catchError((onError) {
+                print(onError);
+              });
+            },
+          )
+        ],
         elevation: 2,
         backgroundColor: Color(0xff4e54c8),
         title: Text(widget.partner.name),
@@ -39,14 +68,54 @@ class _ChatPageState extends State<ChatPage> {
             children: <Widget>[
               Flexible(
                 child: FirebaseAnimatedList(
-                  query: FirebaseUtils().base_message.child(FirebaseUtils()
-                      .getMessageRef(widget.id, widget.partner.id)).limitToLast(40),
+                  query: FirebaseUtils()
+                      .base_message
+                      .child(FirebaseUtils()
+                          .getMessageRef(widget.id, widget.partner.id))
+                      .limitToLast(40),
                   reverse: true,
                   sort: (a, b) => b.key.compareTo(a.key),
                   itemBuilder: (context, snapshot, animation, index) {
                     Message message = new Message(snapshot);
-                    print(message.text);
-                    return ChatBubble(myid: widget.id,partner: widget.partner,message: message,animation: animation,);
+                    print("from" + snapshot.value["dateString"]);
+                    return GestureDetector(
+                      child: ChatBubble(
+                        myid: widget.id,
+                        partner: widget.partner,
+                        message: message,
+                        animation: animation,
+                      ),
+                      onLongPress: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text("Delete message!"),
+                                  content: Text("delete this message"),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text("Cancel"),
+                                      onPressed: () => Navigator.pop(context),
+                                    ),
+                                    FlatButton(
+                                        child: Text("Delete",style: TextStyle(color: Colors.red),),
+                                        onPressed: () async {
+                                         await FirebaseUtils()
+                                              .base_message
+                                              .child(FirebaseUtils()
+                                                  .getMessageRef(widget.id,
+                                                      widget.partner.id))
+                                              .child(snapshot.value["dateString"]).reference().remove().then((onValue){
+                                                print("deleted");
+                                                Navigator.pop(context);
+                                              }).catchError((onError){
+                                                print("not deleted");
+                                                Navigator.pop(context);
+                                              });
+                                        }),
+                                  ],
+                                ));
+                      },
+                    );
                   },
                 ),
               ),

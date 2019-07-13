@@ -34,6 +34,7 @@ class _MsgPageState extends State<MsgPage> {
                   subtitle += chat.last_message ?? "image sent";
                   return MessageTail(
                       initials: chat.user.initiales,
+                      imgUrl: chat.user.imgUrl,
                       lastMsg: subtitle.length > 15
                           ? subtitle.substring(0, 15) + ".."
                           : subtitle,
