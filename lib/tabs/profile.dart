@@ -83,7 +83,7 @@ class _ProfileState extends State<Profile> {
                       user.name,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width / 12),
+                          fontSize: MediaQuery.of(context).size.width / 16),
                     ),
                   ),
                 ),

@@ -21,6 +21,7 @@ class FirebaseUtils {
   Future<bool> updatePassword(String password) async {
     await firebaseAuth.currentUser().then((user) {
       user.updatePassword(password).then((onValue) {
+        logOut();
         return true;
       }).catchError((onError) {
         return false;
