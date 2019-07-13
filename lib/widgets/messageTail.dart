@@ -25,13 +25,13 @@ class MessageTail extends StatelessWidget {
         title: Text(name,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: MediaQuery.of(context).size.width / 16)),
+                fontSize: MediaQuery.of(context).size.width / 18)),
         subtitle: Text(lastMsg,
             style: TextStyle(
                 color: Colors.white.withOpacity(.6),
-                fontSize: MediaQuery.of(context).size.width / 24)),
+                fontSize: MediaQuery.of(context).size.width / 26)),
         trailing:
-            Text(time, style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width / 22)),
+            Text(time, style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width / 24)),
         onTap: onTap,
       ),
     );

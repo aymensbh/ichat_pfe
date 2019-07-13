@@ -39,7 +39,7 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                    child: user.imgUrl == ""
+                    child: user.imgUrl == "url"
                         ? CircleAvatar(
                             backgroundColor: Colors.white,
                             child: Text(user.initiales,
@@ -54,16 +54,16 @@ class _ProfileState extends State<Profile> {
                                 CachedNetworkImageProvider(user.imgUrl),
                             radius: MediaQuery.of(context).size.width / 4,
                           )),
-                Divider(
-                  color: Colors.white.withOpacity(.2),
-                  height: 1.5,
-                ),
+                // Divider(
+                //   color: Colors.white.withOpacity(.2),
+                //   height: 1.5,
+                // ),
                 Container(
                   child: Text(
                     user.name,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: MediaQuery.of(context).size.width / 10),
+                        fontSize: MediaQuery.of(context).size.width / 12),
                   ),
                 ),
                 Container(
@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
                     user.email,
                     style: TextStyle(
                         color: Colors.white.withOpacity(.5),
-                        fontSize: MediaQuery.of(context).size.width / 20),
+                        fontSize: MediaQuery.of(context).size.width / 22),
                   ),
                 ),
                 Divider(
@@ -91,11 +91,11 @@ class _ProfileState extends State<Profile> {
                     title: Text("Change Password",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width / 18)),
+                            fontSize: MediaQuery.of(context).size.width / 20)),
                     subtitle: Text("press to update password",
                         style: TextStyle(
                             color: Colors.white.withOpacity(.6),
-                            fontSize: MediaQuery.of(context).size.width / 25)),
+                            fontSize: MediaQuery.of(context).size.width / 28)),
                   ),
                 ),
                 Divider(
@@ -104,7 +104,36 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context)=> AlertDialog(
+                          title: Text("Delete account?",),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("Cancel"),
+                              onPressed:() =>Navigator.pop(context)
+                            ),
+                            FlatButton(
+                              child: Text("Delete",style: TextStyle(color: Colors.red),),
+                              onPressed:() =>FirebaseUtils().deleteUser(widget.id).then((onValue){
+                                Navigator.pop(context);
+                              }).catchError((onError){
+                                showDialog(
+                                  context: context,
+                                  builder: (context)=>SimpleDialog(
+                                    title: Text("Somthig went wrong!"),
+                                    children: <Widget>[
+                                      Text("Could not delete account..")
+                                    ],
+                                  )
+                                );
+                              })
+                            ),
+                          ],
+                        )
+                      );
+                    },
                     leading: CircleAvatar(
                       backgroundColor: Colors.redAccent.withOpacity(.6),
                       foregroundColor: Colors.white,
@@ -115,11 +144,11 @@ class _ProfileState extends State<Profile> {
                     title: Text("Delete Account",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width / 18)),
+                            fontSize: MediaQuery.of(context).size.width / 20)),
                     subtitle: Text("delete all your informations",
                         style: TextStyle(
                             color: Colors.white.withOpacity(.6),
-                            fontSize: MediaQuery.of(context).size.width / 25)),
+                            fontSize: MediaQuery.of(context).size.width / 28)),
                   ),
                 ),
                 Divider(

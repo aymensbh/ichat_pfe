@@ -29,9 +29,11 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
+
   @override
-  void dispose() {
+  void dispose() async {
     _tabController.dispose();
+    await FirebaseUtils().base_user.child(id).update({"isActive": ""});
     super.dispose();
   }
 
@@ -62,7 +64,7 @@ class _HomePageState extends State<HomePage>
                   //   onPressed: () {},
                   // ),
                   PopupMenuButton(
-                    onSelected: (value) async{
+                    onSelected: (value) async {
                       //TODO: add actions
                       if (value == 3) {
                         await FirebaseUtils()

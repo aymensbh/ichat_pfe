@@ -25,7 +25,8 @@ void signup(BuildContext context) {
                     margin: EdgeInsets.only(top: 8, bottom: 4),
                     child: TextFormField(
                       onSaved: (input) {
-                        name = input;
+                        // input[1].toUpperCase();
+                        name = input.trim();
                       },
                       validator: (input) {
                         if (input.isEmpty) return 'Provide a name';

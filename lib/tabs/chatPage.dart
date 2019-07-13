@@ -40,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
               Flexible(
                 child: FirebaseAnimatedList(
                   query: FirebaseUtils().base_message.child(FirebaseUtils()
-                      .getMessageRef(widget.id, widget.partner.id)),
+                      .getMessageRef(widget.id, widget.partner.id)).limitToLast(40),
                   reverse: true,
                   sort: (a, b) => b.key.compareTo(a.key),
                   itemBuilder: (context, snapshot, animation, index) {

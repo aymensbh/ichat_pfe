@@ -18,24 +18,26 @@ class FirebaseUtils {
     return user;
   }
 
+  Future<bool> updatePassword(String password) async {
+    await firebaseAuth.currentUser().then((user) {
+      user.updatePassword(password).then((onValue) {
+        return true;
+      }).catchError((onError) {
+        return false;
+      });
+    }).catchError((onError) {
+      return false;
+    });
+    return true;
+  }
+
   Future<String> myId() async {
     FirebaseUser user = await firebaseAuth.currentUser();
     return user.uid;
   }
 
   Future<bool> logOut() async {
-    await firebaseAuth.signOut().then((onValue) async{
-    });
-    return true;
-  }
-
-  Future<bool> changePassword(String password) async {
-    await firebaseAuth.currentUser().then((user) {
-      user.updatePassword(password);
-    }).catchError((onError) {
-      print(onError);
-      return false;
-    });
+    await firebaseAuth.signOut().then((onValue) async {});
     return true;
   }
 
@@ -61,7 +63,7 @@ class FirebaseUtils {
 
   Map getChat(String sender, User user, String text, String dateString) {
     Map map = user.toMap();
-    map["monId"] = sender;
+    map["id"] = sender;
     map["last_message"] = text;
     map["dateString"] = dateString;
     return map;
@@ -70,11 +72,16 @@ class FirebaseUtils {
   String getMessageRef(String from, String to) {
     String resultat = "";
     List<String> liste = [from, to];
-    liste.sort((a, b) => a.compareTo(b));
+    liste.sort((a, b) => a.compareTo(b));//TODO: huh??
     for (var x in liste) {
       resultat += x + "+";
     }
     return resultat;
+  }
+
+  Future<void> deffMsg(String id) async{
+    //TODO: Deffuse message!
+
   }
 
   Future<FirebaseUser> signup(
@@ -87,7 +94,7 @@ class FirebaseUtils {
       "name": name,
       "email": email,
       "isActive": "Active",
-      "imgUrl": ""
+      "imgUrl": "url"
     };
     addUser(uid, map);
     return user;
@@ -100,6 +107,20 @@ class FirebaseUtils {
 
   addUser(String uid, Map map) {
     base_user.child(uid).set(map);
+  }
+
+  Future<bool> deleteUser(String uid) async {
+    await firebaseAuth.currentUser().then((user) async {
+      await user.delete();
+      await base_user.child(uid).remove().then((onValue) async {
+        return true;
+      }).catchError((onError) {
+        return false;
+      });
+    }).catchError((onError) {
+      return false;
+    });
+    return true;
   }
 
   //Storage
