@@ -30,12 +30,12 @@ class _HomePageState extends State<HomePage>
   }
 
 
-  @override
-  void dispose() async {
-    _tabController.dispose();
-    await FirebaseUtils().base_user.child(id).update({"isActive": ""});
-    super.dispose();
-  }
+  // @override
+  // void dispose() async {
+  //   _tabController.dispose();
+  //   await FirebaseUtils().base_user.child(id).update({"isActive": ""});
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
