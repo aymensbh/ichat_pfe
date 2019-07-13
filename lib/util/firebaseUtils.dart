@@ -11,6 +11,7 @@ class FirebaseUtils {
   final base_user = base.child("users");
   final base_message = base.child("messages");
   final base_chat = base.child("chats");
+  static bool temp = true;
 
   Future<FirebaseUser> signIn(String mail, String password) async {
     final FirebaseUser user = await firebaseAuth.signInWithEmailAndPassword(
@@ -70,7 +71,7 @@ class FirebaseUtils {
     return map;
   }
 
-  Future<void> deleteMsg(){
+  Future<void> deleteMsg() {
     //TODO: delete msg
   }
 
@@ -84,20 +85,20 @@ class FirebaseUtils {
     return resultat;
   }
 
-  Future<void> deffMsg(List<User> id,me,text,imageUrl) async {
+  Future<void> deffMsg(List<User> id, me, text, imageUrl) async {
     //TODO: Deffuse message!
-    id.forEach((user)async{
+    id.forEach((user) async {
       await sendMessage(user, me, text, imageUrl);
     });
   }
 
-  Future<void> deleteChat(String chatId) async {
-    await base_chat.child(chatId).remove().then((onValue) {
-      print("chat deleted");
-    }).catchError((onError) {
-      print("chat not deleted");
-    });
-  }
+  // Future<void> deleteChat(String chatId) async {
+  //   await base_chat.child(chatId).remove().then((onValue) {
+  //     print("chat deleted");
+  //   }).catchError((onError) {
+  //     print("chat not deleted");
+  //   });
+  // }
 
   Future<FirebaseUser> signup(
       String email, String password, String name) async {
@@ -122,6 +123,25 @@ class FirebaseUtils {
 
   addUser(String uid, Map map) {
     base_user.child(uid).set(map);
+  }
+
+  Future<void> deleteChat(String myId, String pId) async {
+    await FirebaseUtils()
+        .base_message
+        .child(FirebaseUtils().getMessageRef(myId, pId))
+        .remove()
+        .then((onValue) async {
+      await FirebaseUtils()
+          .base_chat
+          .child(myId)
+          .child(pId)
+          .remove()
+          .then((onValue) async {
+        await FirebaseUtils().base_chat.child(pId).child(myId).remove();
+      });
+    }).catchError((onError) {
+      print(onError);
+    });
   }
 
   Future<bool> deleteUser(String uid) async {

@@ -25,7 +25,7 @@ void main(List<String> args) {
             textTheme: TextTheme(
                 body1: TextStyle(fontFamily: 'baloo'),
                 body2: TextStyle(fontFamily: 'baloo'),
-                title: TextStyle(fontFamily: 'baloo',fontSize: 22))),
+                title: TextStyle(fontFamily: 'baloo',fontSize: 18))),
         textTheme: TextTheme(
           body1: TextStyle(fontFamily: 'baloo'),
           body2: TextStyle(fontFamily: 'baloo'),
@@ -43,7 +43,6 @@ void main(List<String> args) {
         )),
   ));
 }
-bool temp=true;
 class Router extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

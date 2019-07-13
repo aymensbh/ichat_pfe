@@ -4,6 +4,7 @@ import 'package:ichat_pfe/tabs/msgpage.dart';
 import 'package:ichat_pfe/tabs/profile.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,6 +29,16 @@ class _HomePageState extends State<HomePage>
 
     super.initState();
   }
+
+  
+  void _showGithubDialog() async {
+    const url = 'https://github.com/aymensbh/Flutter-ChatApp';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+}
 
 
   // @override
@@ -66,7 +77,11 @@ class _HomePageState extends State<HomePage>
                   PopupMenuButton(
                     onSelected: (value) async {
                       //TODO: add actions
-                      if (value == 3) {
+                      if(value == 1){
+
+                      }else if(value == 2){
+                        _showGithubDialog();
+                      }else if (value == 3) {
                         await FirebaseUtils()
                             .base_user
                             .child(id)

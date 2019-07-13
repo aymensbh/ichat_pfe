@@ -31,28 +31,8 @@ class _ChatPageState extends State<ChatPage> {
           IconButton(
             icon: Icon(Icons.delete_outline, color: Colors.white),
             onPressed: () async {
-              await FirebaseUtils()
-                  .base_message
-                  .child(FirebaseUtils()
-                      .getMessageRef(widget.id, widget.partner.id))
-                  .remove()
-                  .then((onValue) async {
-                await FirebaseUtils()
-                    .base_chat
-                    .child(widget.id)
-                    .child(widget.partner.id)
-                    .remove()
-                    .then((onValue) async {
-                  await FirebaseUtils()
-                      .base_chat
-                      .child(widget.partner.id)
-                      .child(widget.id)
-                      .remove();
-                });
+                FirebaseUtils().deleteChat(widget.id, widget.partner.id);
                 Navigator.pop(context);
-              }).catchError((onError) {
-                print(onError);
-              });
             },
           )
         ],

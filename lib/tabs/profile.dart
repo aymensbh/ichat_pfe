@@ -1,16 +1,13 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ichat_pfe/entities/user.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
-import 'package:ichat_pfe/util/firebaseUtils.dart' as prefix0;
 import 'package:ichat_pfe/widgets/editpassword.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../main.dart';
 
 class Profile extends StatefulWidget {
   final String id;
@@ -126,18 +123,18 @@ class _ProfileState extends State<Profile> {
                         // style: TextStyle(fontSize: 18, color: KColors.fourth)
                         ),
                     trailing: Switch(
-                      value: temp,
+                      value: FirebaseUtils.temp,
                       activeColor: Colors.greenAccent,
                       inactiveThumbColor: Colors.grey,
                       onChanged: (value) async {
                         if (value) {
-                          temp=value;
+                          FirebaseUtils.temp=value;
                           await FirebaseUtils()
                               .base_user
                               .child(widget.id)
                               .update({"isActive": "Active"});
                         } else {
-                          temp=value;
+                          FirebaseUtils.temp=value;
                           await FirebaseUtils()
                               .base_user
                               .child(widget.id)
