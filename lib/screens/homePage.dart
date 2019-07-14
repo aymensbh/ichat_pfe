@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage>
 
   
   void _showGithubDialog() async {
-    const url = 'https://github.com/aymensbh/Flutter-ChatApp';
+    const url = 'https://github.com/aymensbh/ichat_pfe';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
