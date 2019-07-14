@@ -14,7 +14,6 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     print(message.from);
     return SizeTransition(
       sizeFactor:

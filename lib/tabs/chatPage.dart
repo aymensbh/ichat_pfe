@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ichat_pfe/entities/message.dart';
@@ -7,8 +5,6 @@ import 'package:ichat_pfe/entities/user.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:ichat_pfe/widgets/messageLayout.dart';
 import 'package:ichat_pfe/widgets/textzone.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icons.dart';
 
 class ChatPage extends StatefulWidget {
   final String id;
@@ -66,34 +62,34 @@ class _ChatPageState extends State<ChatPage> {
                         animation: animation,
                       ),
                       onLongPress: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  title: Text("Delete message!"),
-                                  content: Text("delete this message"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      child: Text("Cancel"),
-                                      onPressed: () => Navigator.pop(context),
-                                    ),
-                                    FlatButton(
-                                        child: Text("Delete",style: TextStyle(color: Colors.red),),
-                                        onPressed: () async {
-                                         await FirebaseUtils()
-                                              .base_message
-                                              .child(FirebaseUtils()
-                                                  .getMessageRef(widget.id,
-                                                      widget.partner.id))
-                                              .child(snapshot.value["dateString"]).reference().remove().then((onValue){
-                                                print("deleted");
-                                                Navigator.pop(context);
-                                              }).catchError((onError){
-                                                print("not deleted");
-                                                Navigator.pop(context);
-                                              });
-                                        }),
-                                  ],
-                                ));
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) => AlertDialog(
+                        //           title: Text("Delete message!"),
+                        //           content: Text("delete this message"),
+                        //           actions: <Widget>[
+                        //             FlatButton(
+                        //               child: Text("Cancel"),
+                        //               onPressed: () => Navigator.pop(context),
+                        //             ),
+                        //             FlatButton(
+                        //                 child: Text("Delete",style: TextStyle(color: Colors.red),),
+                        //                 onPressed: () async {
+                        //                  await FirebaseUtils()
+                        //                       .base_message
+                        //                       .child(FirebaseUtils()
+                        //                           .getMessageRef(widget.id,
+                        //                               widget.partner.id))
+                        //                       .child(snapshot.value["dateString"]).reference().remove().then((onValue){
+                        //                         print("deleted");
+                        //                         Navigator.pop(context);
+                        //                       }).catchError((onError){
+                        //                         print("not deleted");
+                        //                         Navigator.pop(context);
+                        //                       });
+                        //                 }),
+                        //           ],
+                        //         ));
                       },
                     );
                   },

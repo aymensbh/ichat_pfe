@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ichat_pfe/util/firebaseUtils.dart';
 
 class MessageTail extends StatefulWidget {
   final String initials, lastMsg, name, time, imgUrl;

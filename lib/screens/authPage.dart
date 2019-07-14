@@ -8,13 +8,6 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  PageController _controller;
-
-  @override
-  void initState() {
-    _controller = new PageController(initialPage: 0);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,6 @@ import 'package:ichat_pfe/entities/chat.dart';
 import 'package:ichat_pfe/tabs/chatPage.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:ichat_pfe/widgets/messageTail.dart';
-import 'package:line_icons/line_icons.dart';
 
 class MsgPage extends StatefulWidget {
   final String id;

@@ -71,34 +71,15 @@ class FirebaseUtils {
     return map;
   }
 
-  Future<void> deleteMsg() {
-    //TODO: delete msg
-  }
-
   String getMessageRef(String from, String to) {
     String resultat = "";
     List<String> liste = [from, to];
-    liste.sort((a, b) => a.compareTo(b)); //TODO: huh??
+    liste.sort((a, b) => a.compareTo(b));
     for (var x in liste) {
       resultat += x + "+";
     }
     return resultat;
   }
-
-  Future<void> deffMsg(List<User> id, me, text, imageUrl) async {
-    //TODO: Deffuse message!
-    id.forEach((user) async {
-      await sendMessage(user, me, text, imageUrl);
-    });
-  }
-
-  // Future<void> deleteChat(String chatId) async {
-  //   await base_chat.child(chatId).remove().then((onValue) {
-  //     print("chat deleted");
-  //   }).catchError((onError) {
-  //     print("chat not deleted");
-  //   });
-  // }
 
   Future<FirebaseUser> signup(
       String email, String password, String name) async {

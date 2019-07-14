@@ -92,13 +92,8 @@ class _HomePageState extends State<HomePage>
                 elevation: 0,
                 title: Text("iChat"),
                 actions: <Widget>[
-                  // IconButton(
-                  //   icon: Icon(LineIcons.search),
-                  //   onPressed: () {},
-                  // ),
                   PopupMenuButton(
                     onSelected: (value) async {
-                      //TODO: add actions
                       if (value == 1) {
                         _showAboutDialog();
                       } else if (value == 2) {
@@ -194,13 +189,8 @@ class _HomePageState extends State<HomePage>
                   elevation: 0,
                   title: Text("Loading.."),
                   actions: <Widget>[
-                    // IconButton(
-                    //   icon: Icon(LineIcons.search),
-                    //   onPressed: () {},
-                    // ),
                     PopupMenuButton(
                       onSelected: (value) {
-                        //TODO: add actions
                         if (value == 3) {}
                       },
                       itemBuilder: (context) => [
