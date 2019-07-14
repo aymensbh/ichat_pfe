@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
-  
   void _showGithubDialog() async {
     const url = 'https://github.com/aymensbh/ichat_pfe';
     if (await canLaunch(url)) {
@@ -38,8 +37,31 @@ class _HomePageState extends State<HomePage>
     } else {
       throw 'Could not launch $url';
     }
-}
+  }
 
+  void _showAboutDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "About Project: iChat!",
+            ),
+            content: Text(
+              "Products used Flutter & Firebase Paticipants: Sebihi Abdelkader & Merouani Abdenour thank you",
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(
+                  "Ok",
+                ),
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          );
+        });
+  }
 
   // @override
   // void dispose() async {
@@ -77,11 +99,11 @@ class _HomePageState extends State<HomePage>
                   PopupMenuButton(
                     onSelected: (value) async {
                       //TODO: add actions
-                      if(value == 1){
-
-                      }else if(value == 2){
+                      if (value == 1) {
+                        _showAboutDialog();
+                      } else if (value == 2) {
                         _showGithubDialog();
-                      }else if (value == 3) {
+                      } else if (value == 3) {
                         await FirebaseUtils()
                             .base_user
                             .child(id)

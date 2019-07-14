@@ -49,12 +49,16 @@ class _MsgPageState extends State<MsgPage> {
                                   ))));
                 },
               );
-            }else{
+            } else {
               return Center(
-              child: Text("Loading messages..",style: TextStyle(color: Colors.white,fontSize: 18),),
-            );
+                child: Text(
+                  "Loading messages..",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              );
             }
           },
         ));
   }
 }
+
