@@ -34,9 +34,11 @@ class _MsgPageState extends State<MsgPage> {
                   return MessageTail(
                       initials: chat.user.initiales,
                       imgUrl: chat.user.imgUrl,
-                      lastMsg: subtitle.length > 15
-                          ? subtitle.substring(0, 15) + ".."
-                          : subtitle,
+                      lastMsg: 
+                      // subtitle.length > 15
+                      //     ? subtitle.substring(0, 15) + ".."
+                      //     : 
+                          subtitle,
                       name: chat.user.name,
                       time: chat.date,
                       onTap: () => Navigator.push(
