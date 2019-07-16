@@ -52,6 +52,14 @@ class _ProfileState extends State<Profile> {
                   onTap: () => _takePicture(ImageSource.gallery),
                   child: Center(
                     child: Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        )
+                      ),
                         child: user.imgUrl == "url"
                             ? CircleAvatar(
                                 backgroundColor: Colors.white,
@@ -69,6 +77,9 @@ class _ProfileState extends State<Profile> {
                                 radius: MediaQuery.of(context).size.width / 4,
                               )),
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
                 ),
                 // Divider(
                 //   color: Colors.white.withOpacity(.2),
@@ -96,7 +107,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.all(MediaQuery.of(context).size.height / 16),
+                      EdgeInsets.all(MediaQuery.of(context).size.height / 22),
                 ),
                 Divider(
                   color: Colors.white.withOpacity(.2),

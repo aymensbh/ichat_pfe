@@ -46,6 +46,7 @@ class _DeffState extends State<Deff> {
             controller: controller,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(12),
               hintText: 'type a message..',
               hintStyle: TextStyle(color: Colors.white.withOpacity(.4)),
               border: OutlineInputBorder(
@@ -99,7 +100,12 @@ class _DeffState extends State<Deff> {
                     },
                   );
                 } else {
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: Text(
+                      "Loading contacts..",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  );
                 }
               },
             )),

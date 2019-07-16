@@ -5,15 +5,15 @@ class MessageTail extends StatefulWidget {
   final String initials, lastMsg, name, time, imgUrl;
   final GestureTapCallback onTap;
 
-  const MessageTail(
-      {Key key,
-      this.initials,
-      this.lastMsg,
-      this.name,
-      this.time,
-      this.onTap,
-      this.imgUrl,})
-      : super(key: key);
+  const MessageTail({
+    Key key,
+    this.initials,
+    this.lastMsg,
+    this.name,
+    this.time,
+    this.onTap,
+    this.imgUrl,
+  }) : super(key: key);
 
   @override
   _MessageTailState createState() => _MessageTailState();
@@ -68,21 +68,27 @@ class _MessageTailState extends State<MessageTail> {
         //             ],
         //           ));
         // },
-        leading: widget.imgUrl == "url"
-            ? CircleAvatar(
-                backgroundColor: Colors.white,
-                foregroundColor: Color(0xff4e54c8),
-                child: Text(widget.initials),
-                //  Text(user.initiales,
-                //     style: TextStyle(color: Color(0xff4e54c8))),
-                maxRadius: 28,
-              )
-            : CircleAvatar(
-                backgroundImage: CachedNetworkImageProvider(
-                  widget.imgUrl,
+        leading: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.4),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: widget.imgUrl == "url"
+              ? CircleAvatar(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Color(0xff4e54c8),
+                  child: Text(widget.initials),
+                  //  Text(user.initiales,
+                  //     style: TextStyle(color: Color(0xff4e54c8))),
+                  maxRadius: 28,
+                )
+              : CircleAvatar(
+                  backgroundImage: CachedNetworkImageProvider(
+                    widget.imgUrl,
+                  ),
+                  maxRadius: 28,
                 ),
-                maxRadius: 28,
-              ),
+        ),
         title: Text(widget.name,
             style: TextStyle(
                 color: Colors.white,

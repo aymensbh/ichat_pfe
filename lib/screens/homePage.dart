@@ -5,6 +5,8 @@ import 'package:ichat_pfe/tabs/profile.dart';
 import 'package:ichat_pfe/util/firebaseUtils.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:extended_tabs/extended_tabs.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -112,7 +114,7 @@ class _HomePageState extends State<HomePage>
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text("About"),
+                                Text("About",style: TextStyle(color: Colors.black.withOpacity(.6)),),
                                 Icon(
                                   Icons.help_outline,
                                   color: Colors.orange,
@@ -125,7 +127,7 @@ class _HomePageState extends State<HomePage>
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text("Github"),
+                                Text("Github",style: TextStyle(color: Colors.black.withOpacity(.6)),),
                                 Icon(
                                   LineIcons.github,
                                   color: Colors.green,
@@ -138,7 +140,7 @@ class _HomePageState extends State<HomePage>
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text("Logout"),
+                                Text("Logout",style: TextStyle(color: Colors.black.withOpacity(.6)),),
                                 Icon(
                                   Icons.exit_to_app,
                                   color: Colors.redAccent,
@@ -170,8 +172,10 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
-              body: TabBarView(
+              body: ExtendedTabBarView(
                 controller: _tabController,
+                linkWithAncestor: true,
+                cacheExtent: 2,
                 children: <Widget>[
                   MsgPage(id: id),
                   Contacts(id: id),
